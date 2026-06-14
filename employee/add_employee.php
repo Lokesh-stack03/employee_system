@@ -25,7 +25,14 @@
 		<input type="text" name="mobile">
 		<br><br>
 		<label>Department dropdown:</label>
-		<input type="text" name="department">
+		<select name="department" class="form-control">
+			<option value="IT">IT</option>
+			<option value="HR">HR</option>
+			<option value="Finanace">Finance</option>
+		</select>
+		<br><br>
+		<label for="salary">Salary:</label>
+		<input type="number" name="salary">
 		<br><br>
 		
 		<input type="submit" name="submit">
