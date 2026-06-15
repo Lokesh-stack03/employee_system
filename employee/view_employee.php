@@ -40,11 +40,17 @@ $result=mysqli_query($conn,$sql);
                 <td><?php echo $row['mobile']; ?></td>
                 <td><?php echo $row['department']; ?></td>
                 <td><?php echo $row['salary']; ?></td>
+                <td>
+    <a href="edit_employee.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+      <br><br>
+    <a href="delete_employee.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+</td>
             </tr>
 				
 			<?php
 }
 			?>
+
 		</tbody>
 	</table>
 </div>
