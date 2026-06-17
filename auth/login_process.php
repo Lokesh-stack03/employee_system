@@ -28,7 +28,7 @@ if(mysqli_num_rows($result) > 0){
 
     }else{
 
-        header("Location: ../user/home.php");
+        header("Location: ../user/index.php");
         exit();
 
     }
