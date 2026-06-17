@@ -1,6 +1,11 @@
 <?php
 include '../db/db.php';
+session_start();
 
+if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin'){
+    header("Location: ../auth/login.php");
+    exit();
+}
 
 $sql = "SELECT * FROM employees";
 $result=mysqli_query($conn,$sql);

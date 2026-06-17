@@ -30,11 +30,16 @@ if(!isset($_SESSION['user_id']) ||
     </a>
 
     <a href="../employees/view_employees.php"
-       class="btn btn-primary">
+       class="btn btn-success">
        View Employees
     </a>
 
-    <a href="../auth/logout.php"
+   
+     <a href="../employees/delete_employee.php"
+       class="btn btn-success">
+       Delete Employee
+    </a>
+     <a href="../auth/logout.php"
        class="btn btn-danger">
        Logout
     </a>
