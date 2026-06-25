@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin'){
@@ -7,52 +6,54 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin'){
     exit();
 }
 
+$base = '../';
+$pageTitle = 'Add Employee';
+$showHero = true;
+$heroTitle = 'Add Employee';
+$heroSubtitle = 'Register a new employee to the system';
+$heroImage = $base . 'assets/images/hero-add-employee.jpg';
+include '../includes/header.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Registartion</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
-	<div class="container">
 
-	<div class="forms">
-		<div class="form-header" style="font-family: bold; font-size: 30px;">
-		Employee Registration</div>
-		<br><br>
-	<form action="insert_employee.php" method="POST">
-		<label>Employee Name:</label>
-		<input type="text" name="employee_name">
-		<br><br>
-		<label>Email:</label>
-		<input type="email" name="email">
-		<br><br>
-		<label>Mobile no:</label>
-		<input type="text" name="mobile">
-		<br><br>
-		<label>Department dropdown:</label>
-		<select name="department" class="form-control">
-			<option value="IT">IT</option>
-			<option value="HR">HR</option>
-			<option value="Finanace">Finance</option>
-		</select>
-		<br><br>
-		<label for="salary">Salary:</label>
-		<input type="number" name="salary">
-		<br><br>
-		
-		<input type="submit" name="submit">
-		<br><br>
-		
-	</form>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-card">
+                <h4 class="mb-4 text-center fw-semibold"><i class="bi bi-person-plus me-2"></i>Employee Registration</h4>
+                <form action="insert_employee.php" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Employee Name</label>
+                        <input type="text" name="employee_name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mobile Number</label>
+                        <input type="text" name="mobile" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Department</label>
+                        <select name="department" class="form-select" required>
+                            <option value="IT">IT</option>
+                            <option value="HR">HR</option>
+                            <option value="Finance">Finance</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Salary</label>
+                        <input type="number" name="salary" class="form-control" required>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" name="submit" class="btn btn-accent">Add Employee</button>
+                        <a href="view_employee.php" class="btn btn-outline-secondary">View All</a>
+                        <a href="../admin/dashboard.php" class="btn btn-outline-secondary">Dashboard</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
-
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php include '../includes/footer.php'; ?>

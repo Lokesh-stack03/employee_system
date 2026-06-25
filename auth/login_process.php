@@ -21,21 +21,13 @@ if(mysqli_num_rows($result) > 0){
     $_SESSION['username'] = $user['username'];
     $_SESSION['role'] = $user['role'];
 
-    if($user['role'] == 'admin'){
-
-        header("Location: ../admin/dashboard.php");
-        exit();
-
-    }else{
-
-        header("Location: ../user/index.php");
-        exit();
-
-    }
+    header("Location: ../index.php");
+    exit();
 
 }else{
 
-    echo "Invalid Email or Password";
+    header("Location: login.php?error=" . urlencode("Invalid Email or Password"));
+    exit();
 
 }
 

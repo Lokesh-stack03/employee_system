@@ -7,25 +7,25 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin'){
     exit();
 }
 
-$sql = "SELECT * FROM employees ORDER BY id DESC";
+$sql = "SELECT * FROM users ORDER BY id DESC";
 $result = mysqli_query($conn, $sql);
 
 $base = '../';
-$pageTitle = 'Employee List';
+$pageTitle = 'User List';
 $showHero = true;
-$heroTitle = 'Employee Directory';
-$heroSubtitle = 'View and manage all employee records';
-$heroImage = $base . 'assets/images/hero-employees.jpg';
+$heroTitle = 'User Management';
+$heroSubtitle = 'View and manage all system users';
+$heroImage = $base . 'assets/images/hero-users.jpg';
 include '../includes/header.php';
 ?>
 
 <div class="container py-5">
     <div class="content-card">
         <div class="content-card-header">
-            <h4><i class="bi bi-people me-2"></i>All Employees</h4>
+            <h4><i class="bi bi-people me-2"></i>All Users</h4>
             <div>
-                <a href="add_employee.php" class="btn btn-accent btn-sm me-2"><i class="bi bi-plus-lg me-1"></i>Add Employee</a>
-                <a href="../admin/dashboard.php" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Dashboard</a>
+                <a href="add_user.php" class="btn btn-accent btn-sm me-2"><i class="bi bi-plus-lg me-1"></i>Add User</a>
+                <a href="dashboard.php" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Dashboard</a>
             </div>
         </div>
         <div class="content-card-body p-0">
@@ -34,11 +34,9 @@ include '../includes/header.php';
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Username</th>
                             <th>Email</th>
-                            <th>Mobile</th>
-                            <th>Department</th>
-                            <th>Salary</th>
+                            <th>Role</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -46,14 +44,16 @@ include '../includes/header.php';
                         <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
                             <td><?php echo $row['id']; ?></td>
-                            <td><?php echo htmlspecialchars($row['employee_name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['username']); ?></td>
                             <td><?php echo htmlspecialchars($row['email']); ?></td>
-                            <td><?php echo htmlspecialchars($row['mobile']); ?></td>
-                            <td><?php echo htmlspecialchars($row['department']); ?></td>
-                            <td>$<?php echo number_format($row['salary']); ?></td>
                             <td>
-                                <a href="edit_employee.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-action">Edit</a>
-                                <a href="delete_employee.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-action">Delete</a>
+                                <span class="badge-role <?php echo $row['role'] === 'admin' ? 'badge-admin' : 'badge-user'; ?>">
+                                    <?php echo ucfirst($row['role']); ?>
+                                </span>
+                            </td>
+                            <td>
+                                <a href="edit_user.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-action">Edit</a>
+                                <a href="delete_user.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-action">Delete</a>
                             </td>
                         </tr>
                         <?php endwhile; ?>
